@@ -1,0 +1,1203 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;*******************************************************
+                       ************************
+    2 00000000         ; file       : startup_es32f065x.s
+    3 00000000         ; description: es32f065x Device Startup File
+    4 00000000         ; author     : AE Team
+    5 00000000         ; data       : 29 Aug 2017
+    6 00000000         ; Copyright (C) Shanghai Eastsoft Microelectronics Co. L
+                       td. All rights reserved.
+    7 00000000         ;*******************************************************
+                       ************************
+    8 00000000         
+    9 00000000         ;Stack Configuration------------------------------------
+                       ------------------------
+   10 00000000 00000400 
+                       Stack_Size
+                               EQU              0x00000400
+   11 00000000                 AREA             STACK, NOINIT, READWRITE, ALIGN
+=3
+   12 00000000         Stack_Mem
+                               SPACE            Stack_Size
+   13 00000400         __initial_sp
+   14 00000400         ;-------------------------------------------------------
+                       ------------------------
+   15 00000400         
+   16 00000400         ;Heap Configuration-------------------------------------
+                       ------------------------
+   17 00000400 00000000 
+                       Heap_Size
+                               EQU              0x00000000
+   18 00000400                 AREA             HEAP, NOINIT, READWRITE, ALIGN=
+3
+   19 00000000         __heap_base
+   20 00000000         Heap_Mem
+                               SPACE            Heap_Size
+   21 00000000         __heap_limit
+   22 00000000         ;-------------------------------------------------------
+                       ------------------------
+   23 00000000                 PRESERVE8
+   24 00000000                 THUMB
+   25 00000000         
+   26 00000000         ; Vector Table Mapped to Address 0 at Reset-------------
+                       ------------------------
+   27 00000000                 AREA             RESET, DATA, READONLY
+   28 00000000                 EXPORT           __Vectors
+   29 00000000         
+   30 00000000 00000000 
+                       __Vectors
+                               DCD              __initial_sp ;0,  load top of s
+                                                            tack
+   31 00000004 00000000        DCD              Reset_Handler 
+                                                            ;1,  reset handler
+   32 00000008 00000000        DCD              NMI_Handler ;2,  nmi handler
+   33 0000000C 00000000        DCD              HardFault_Handler ;3,  hard fau
+                                                            lt handler
+   34 00000010 00000000        DCD              0           ;4,  MPU Fault Hand
+                                                            ler
+   35 00000014 00000000        DCD              0           ;5,  Bus Fault Hand
+                                                            ler
+   36 00000018 00000000        DCD              0           ;6,  Usage Fault Ha
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+                                                            ndler
+   37 0000001C 00000000        DCD              0           ;7,  Reserved
+   38 00000020 00000000        DCD              0           ;8,  Reserved
+   39 00000024 00000000        DCD              0           ;9,  Reserved
+   40 00000028 00000000        DCD              0           ;10, Reserved
+   41 0000002C 00000000        DCD              SVC_Handler ;11, svcall handler
+                                                            
+   42 00000030 00000000        DCD              DebugMon_Handler ;12, Debug Mon
+                                                            itor Handler
+   43 00000034 00000000        DCD              0           ;13, Reserved
+   44 00000038 00000000        DCD              PendSV_Handler 
+                                                            ;14, pendsv handler
+                                                            
+   45 0000003C 00000000        DCD              SysTick_Handler ;15, systick ha
+                                                            ndler
+   46 00000040 00000000        DCD              WWDG_IWDG_Handler ;16, irq0    
+                                                            WWDG_IWDG handler
+   47 00000044 00000000        DCD              LVD_Handler ;17, irq1    LVD ha
+                                                            ndler
+   48 00000048 00000000        DCD              RTC_TSENSE_Handler ;18, irq2   
+                                                             RTC handler
+   49 0000004C 00000000        DCD              CRYPT_TRNG_Handler ;19, irq3   
+                                                             CRYPT handler
+   50 00000050 00000000        DCD              CMU_Handler ;20, irq4    CMU ha
+                                                            ndler
+   51 00000054 00000000        DCD              EXTI0_3_Handler ;21, irq5    EX
+                                                            TI0_3 handler
+   52 00000058 00000000        DCD              EXTI4_7_Handler ;22, irq6    EX
+                                                            TI4_7 handler
+   53 0000005C 00000000        DCD              EXTI8_11_Handler ;23, irq7    E
+                                                            XTI8_11 handler
+   54 00000060 00000000        DCD              EXTI12_15_Handler ;24, irq8    
+                                                            EXTI12_15 handler
+   55 00000064 00000000        DCD              DMA_Handler ;25, irq9    DMA ha
+                                                            ndler
+   56 00000068 00000000        DCD              CAN0_Handler ;26, irq10   CAN0_
+                                                            CRYPT_TRNG handler
+   57 0000006C 00000000        DCD              LPTIM0_SPI2_Handler ;27, irq11 
+                                                              LPTIM0_SPI2 handl
+                                                            er
+   58 00000070 00000000        DCD              ADC_ACMP_Handler ;28, irq12   A
+                                                            DC_ACMP handler
+   59 00000074 00000000        DCD              AD16C4T0_BRK_UP_TRIG_COM_Handle
+r 
+                                                            ;29, irq13   AD16C4
+                                                            T0_BRK_UP_TRIG_COM 
+                                                            handler
+   60 00000078 00000000        DCD              AD16C4T0_CC_Handler ;30, irq14 
+                                                              AD16C4T0_CC handl
+                                                            er
+   61 0000007C 00000000        DCD              BS16T0_Handler ;31, irq15   BS1
+                                                            6T0 handler
+   62 00000080 00000000        DCD              0           ;32, irq16   Reserv
+                                                            ed
+   63 00000084 00000000        DCD              GP16C2T0_Handler ;33, irq17   G
+                                                            P16C2T0 handler
+   64 00000088 00000000        DCD              GP16C2T1_Handler ;34, irq18   G
+                                                            P16C2T1 handler
+   65 0000008C 00000000        DCD              BS16T1_UART2_Handler ;35, irq19
+
+
+
+ARM Macro Assembler    Page 3 
+
+
+                                                               BS16T1_UART2 han
+                                                            dler
+   66 00000090 00000000        DCD              BS16T2_UART3_Handler ;36, irq20
+                                                               BS16T2_UART3 han
+                                                            dler
+   67 00000094 00000000        DCD              GP16C4T0_LCD_Handler ;37, irq21
+                                                               GP16C4T0_LCD han
+                                                            dler
+   68 00000098 00000000        DCD              BS16T3_DAC0_Handler ;38, irq22 
+                                                              BS16T3_DAC0  hand
+                                                            ler
+   69 0000009C 00000000        DCD              I2C0_Handler ;39, irq23   I2C0 
+                                                            handler
+   70 000000A0 00000000        DCD              I2C1_Handler ;40, irq24   I2C1 
+                                                            handler
+   71 000000A4 00000000        DCD              SPI0_Handler ;41, irq25   SPI0 
+                                                            handler
+   72 000000A8 00000000        DCD              SPI1_Handler ;42, irq26   SPI1 
+                                                            handler
+   73 000000AC 00000000        DCD              UART0_Handler ;43, irq27   UART
+                                                            0 handler
+   74 000000B0 00000000        DCD              UART1_Handler ;44, irq28   UART
+                                                            1 handler
+   75 000000B4 00000000        DCD              USART0_Handler ;45, irq29   USA
+                                                            RT0 handler
+   76 000000B8 00000000        DCD              USART1_Handler ;46, irq30   USA
+                                                            RT1 handler
+   77 000000BC 00000000        DCD              LPUART0_Handler ;47, irq31   LP
+                                                            UART0 handler
+   78 000000C0         
+   79 000000C0         ;-------------------------------------------------------
+                       ------------------------
+   80 000000C0                 AREA             INT, CODE, READONLY ;code begin
+                                                            
+   81 00000000         
+   82 00000000         ;Reset Handler------------------------------------------
+                       ----
+   83 00000000         Reset_Handler
+                               PROC
+   84 00000000                 EXPORT           Reset_Handler                  
+[WEAK]
+   85 00000000                 IMPORT           __main
+   86 00000000 4817            LDR              R0, =__main
+   87 00000002 4700            BX               R0
+   88 00000004 BF00            NOP
+   89 00000006 00 00           ALIGN
+   90 00000008                 ENDP
+   91 00000008         
+   92 00000008         ;system int---------------------------------------------
+                       ----
+   93 00000008         NMI_Handler
+                               PROC                         ;int 2
+   94 00000008                 EXPORT           NMI_Handler                    
+[WEAK]
+   95 00000008 E7FE            B                .
+   96 0000000A                 ENDP
+   97 0000000A         
+   99 0000000A         HardFault_Handler
+                               PROC                         ;int3
+
+
+
+ARM Macro Assembler    Page 4 
+
+
+  100 0000000A                 EXPORT           HardFault_Handler              
+[WEAK]
+  101 0000000A E7FE            B                .
+  102 0000000C                 ENDP
+  103 0000000C         
+  105 0000000C         SVC_Handler
+                               PROC                         ;int11
+  106 0000000C                 EXPORT           SVC_Handler                    
+[WEAK]
+  107 0000000C E7FE            B                .
+  108 0000000E                 ENDP
+  109 0000000E         
+  111 0000000E         DebugMon_Handler
+                               PROC                         ;int12
+  112 0000000E                 EXPORT           DebugMon_Handler               
+[WEAK]
+  113 0000000E E7FE            B                .
+  114 00000010                 ENDP
+  115 00000010         
+  116 00000010         PendSV_Handler
+                               PROC                         ;int14
+  117 00000010                 EXPORT           PendSV_Handler                 
+[WEAK]
+  118 00000010 E7FE            B                .
+  119 00000012                 ENDP
+  120 00000012         
+  122 00000012         SysTick_Handler
+                               PROC                         ;int15
+  123 00000012                 EXPORT           SysTick_Handler                
+[WEAK]
+  124 00000012 E7FE            B                .
+  125 00000014                 ENDP
+  126 00000014         
+  127 00000014         ;peripheral module int ---------------------------------
+                       --------------
+  129 00000014         WWDG_IWDG_Handler
+                               PROC                         ;int16
+  130 00000014                 EXPORT           WWDG_IWDG_Handler              
+[WEAK]
+  131 00000014 E7FE            B                .
+  132 00000016                 ENDP
+  133 00000016         
+  135 00000016         LVD_Handler
+                               PROC                         ;int17
+  136 00000016                 EXPORT           LVD_Handler                    
+[WEAK]
+  137 00000016 E7FE            B                .
+  138 00000018                 ENDP
+  139 00000018         
+  141 00000018         RTC_TSENSE_Handler
+                               PROC                         ;int18
+  142 00000018                 EXPORT           RTC_TSENSE_Handler             
+[WEAK]
+  143 00000018 E7FE            B                .
+  144 0000001A                 ENDP
+  145 0000001A         
+  147 0000001A         CRYPT_TRNG_Handler
+                               PROC                         ;int19
+  148 0000001A                 EXPORT           CRYPT_TRNG_Handler             
+
+
+
+ARM Macro Assembler    Page 5 
+
+
+[WEAK]
+  149 0000001A E7FE            B                .
+  150 0000001C                 ENDP
+  151 0000001C         
+  153 0000001C         CMU_Handler
+                               PROC                         ;int20
+  154 0000001C                 EXPORT           CMU_Handler                    
+[WEAK]
+  155 0000001C E7FE            B                .
+  156 0000001E                 ENDP
+  157 0000001E         
+  159 0000001E         EXTI0_3_Handler
+                               PROC                         ;int21
+  160 0000001E                 EXPORT           EXTI0_3_Handler                
+[WEAK]
+  161 0000001E E7FE            B                .
+  162 00000020                 ENDP
+  163 00000020         
+  165 00000020         EXTI4_7_Handler
+                               PROC                         ;int22
+  166 00000020                 EXPORT           EXTI4_7_Handler                
+[WEAK]
+  167 00000020 E7FE            B                .
+  168 00000022                 ENDP
+  169 00000022         
+  171 00000022         EXTI8_11_Handler
+                               PROC                         ;int23
+  172 00000022                 EXPORT           EXTI8_11_Handler               
+[WEAK]
+  173 00000022 E7FE            B                .
+  174 00000024                 ENDP
+  175 00000024         
+  177 00000024         EXTI12_15_Handler
+                               PROC                         ;int24
+  178 00000024                 EXPORT           EXTI12_15_Handler              
+[WEAK]
+  179 00000024 E7FE            B                .
+  180 00000026                 ENDP
+  181 00000026         
+  183 00000026         DMA_Handler
+                               PROC                         ;int25
+  184 00000026                 EXPORT           DMA_Handler                    
+[WEAK]
+  185 00000026 E7FE            B                .
+  186 00000028                 ENDP
+  187 00000028         
+  189 00000028         CAN0_Handler
+                               PROC                         ;int26
+  190 00000028                 EXPORT           CAN0_Handler                   
+[WEAK]
+  191 00000028 E7FE            B                .
+  192 0000002A                 ENDP
+  193 0000002A         
+  195 0000002A         LPTIM0_SPI2_Handler
+                               PROC                         ;int27
+  196 0000002A                 EXPORT           LPTIM0_SPI2_Handler            
+[WEAK]
+  197 0000002A E7FE            B                .
+  198 0000002C                 ENDP
+
+
+
+ARM Macro Assembler    Page 6 
+
+
+  199 0000002C         
+  201 0000002C         ADC_ACMP_Handler
+                               PROC                         ;int28
+  202 0000002C                 EXPORT           ADC_ACMP_Handler               
+[WEAK]
+  203 0000002C E7FE            B                .
+  204 0000002E                 ENDP
+  205 0000002E         
+  207 0000002E         AD16C4T0_BRK_UP_TRIG_COM_Handler
+                               PROC                         ;int29
+  208 0000002E                 EXPORT           AD16C4T0_BRK_UP_TRIG_COM_Handle
+r [WEAK]
+  209 0000002E E7FE            B                .
+  210 00000030                 ENDP
+  211 00000030         
+  213 00000030         AD16C4T0_CC_Handler
+                               PROC                         ;int30
+  214 00000030                 EXPORT           AD16C4T0_CC_Handler            
+[WEAK]
+  215 00000030 E7FE            B                .
+  216 00000032                 ENDP
+  217 00000032         
+  219 00000032         BS16T0_Handler
+                               PROC                         ;int31
+  220 00000032                 EXPORT           BS16T0_Handler [WEAK]
+  221 00000032 E7FE            B                .
+  222 00000034                 ENDP
+  223 00000034         
+  224 00000034         GP16C2T0_Handler
+                               PROC                         ;int33
+  225 00000034                 EXPORT           GP16C2T0_Handler               
+ [WEAK]
+  226 00000034 E7FE            B                .
+  227 00000036                 ENDP
+  228 00000036         
+  229 00000036         GP16C2T1_Handler
+                               PROC                         ;int34
+  230 00000036                 EXPORT           GP16C2T1_Handler               
+ [WEAK]
+  231 00000036 E7FE            B                .
+  232 00000038                 ENDP
+  233 00000038         
+  235 00000038         BS16T1_UART2_Handler
+                               PROC                         ;int35
+  236 00000038                 EXPORT           BS16T1_UART2_Handler           
+[WEAK]
+  237 00000038 E7FE            B                .
+  238 0000003A                 ENDP
+  239 0000003A         
+  241 0000003A         BS16T2_UART3_Handler
+                               PROC                         ;int36
+  242 0000003A                 EXPORT           BS16T2_UART3_Handler           
+[WEAK]
+  243 0000003A E7FE            B                .
+  244 0000003C                 ENDP
+  245 0000003C         
+  247 0000003C         GP16C4T0_LCD_Handler
+                               PROC                         ;int37
+  248 0000003C                 EXPORT           GP16C4T0_LCD_Handler           
+
+
+
+ARM Macro Assembler    Page 7 
+
+
+[WEAK]
+  249 0000003C E7FE            B                .
+  250 0000003E                 ENDP
+  251 0000003E         
+  253 0000003E         BS16T3_DAC0_Handler
+                               PROC                         ;int38
+  254 0000003E                 EXPORT           BS16T3_DAC0_Handler            
+[WEAK]
+  255 0000003E E7FE            B                .
+  256 00000040                 ENDP
+  257 00000040         
+  259 00000040         I2C0_Handler
+                               PROC                         ;int39
+  260 00000040                 EXPORT           I2C0_Handler                   
+[WEAK]
+  261 00000040 E7FE            B                .
+  262 00000042                 ENDP
+  263 00000042         
+  265 00000042         I2C1_Handler
+                               PROC                         ;int40
+  266 00000042                 EXPORT           I2C1_Handler                   
+[WEAK]
+  267 00000042 E7FE            B                .
+  268 00000044                 ENDP
+  269 00000044         
+  271 00000044         SPI0_Handler
+                               PROC                         ;int41
+  272 00000044                 EXPORT           SPI0_Handler                   
+[WEAK]
+  273 00000044 E7FE            B                .
+  274 00000046                 ENDP
+  275 00000046         
+  277 00000046         SPI1_Handler
+                               PROC                         ;int42
+  278 00000046                 EXPORT           SPI1_Handler                   
+[WEAK]
+  279 00000046 E7FE            B                .
+  280 00000048                 ENDP
+  281 00000048         
+  283 00000048         UART0_Handler
+                               PROC                         ;int43
+  284 00000048                 EXPORT           UART0_Handler                  
+[WEAK]
+  285 00000048 E7FE            B                .
+  286 0000004A                 ENDP
+  287 0000004A         
+  289 0000004A         UART1_Handler
+                               PROC                         ;int44
+  290 0000004A                 EXPORT           UART1_Handler                  
+[WEAK]
+  291 0000004A E7FE            B                .
+  292 0000004C                 ENDP
+  293 0000004C         
+  295 0000004C         USART0_Handler
+                               PROC                         ;int45
+  296 0000004C                 EXPORT           USART0_Handler                 
+[WEAK]
+  297 0000004C E7FE            B                .
+  298 0000004E                 ENDP
+
+
+
+ARM Macro Assembler    Page 8 
+
+
+  299 0000004E         
+  301 0000004E         USART1_Handler
+                               PROC                         ;int46
+  302 0000004E                 EXPORT           USART1_Handler                 
+[WEAK]
+  303 0000004E E7FE            B                .
+  304 00000050                 ENDP
+  305 00000050         
+  307 00000050         LPUART0_Handler
+                               PROC                         ;int47
+  308 00000050                 EXPORT           LPUART0_Handler                
+[WEAK]
+  309 00000050 E7FE            B                .
+  310 00000052                 ENDP
+  311 00000052         
+  312 00000052         ; User Initial Stack & Heap-----------------------------
+                       ------------------------
+  313 00000052 00 00           ALIGN
+  314 00000054                 IF               :DEF:__MICROLIB
+  321 00000054         
+  322 00000054                 IMPORT           __use_two_region_memory
+  323 00000054                 EXPORT           __user_initial_stackheap
+  324 00000054         __user_initial_stackheap
+  325 00000054 4803            LDR              R0, =  Heap_Mem
+  326 00000056 4904            LDR              R1, = (Stack_Mem + Stack_Size)
+  327 00000058 4A02            LDR              R2, = (Heap_Mem +  Heap_Size)
+  328 0000005A 4B04            LDR              R3, = Stack_Mem
+  329 0000005C 4770            BX               LR
+  330 0000005E         
+  331 0000005E 00 00           ALIGN
+  332 00000060         
+  333 00000060                 ENDIF
+  334 00000060         
+  335 00000060                 END
+              00000000 
+              00000000 
+              00000400 
+              00000000 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M0 --apcs=interw
+ork --depend=.\objects\startup_es32f065x.d -o.\objects\startup_es32f065x.o -I.\
+RTE\_Target_1 -ID:\MDK5.29\Eastsoft\ES32_DFP\1.0.6\Device\Include -ID:\MDK5.29\
+ARM\CMSIS\Include --predefine="__UVISION_VERSION SETA 529" --list=.\listings\st
+artup_es32f065x.lst ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\startup
+_es32f065x.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+STACK 00000000
+
+Symbol: STACK
+   Definitions
+      At line 11 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+   Uses
+      None
+Comment: STACK unused
+Stack_Mem 00000000
+
+Symbol: Stack_Mem
+   Definitions
+      At line 12 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+   Uses
+      At line 326 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+      At line 328 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+__initial_sp 00000400
+
+Symbol: __initial_sp
+   Definitions
+      At line 13 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+   Uses
+      At line 30 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+Comment: __initial_sp used once
+3 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+HEAP 00000000
+
+Symbol: HEAP
+   Definitions
+      At line 18 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+   Uses
+      None
+Comment: HEAP unused
+Heap_Mem 00000000
+
+Symbol: Heap_Mem
+   Definitions
+      At line 20 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+   Uses
+      At line 325 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+      At line 327 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+__heap_base 00000000
+
+Symbol: __heap_base
+   Definitions
+      At line 19 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+   Uses
+      None
+Comment: __heap_base unused
+__heap_limit 00000000
+
+Symbol: __heap_limit
+   Definitions
+      At line 21 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+   Uses
+      None
+Comment: __heap_limit unused
+4 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 27 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 30 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+   Uses
+      At line 28 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+AD16C4T0_BRK_UP_TRIG_COM_Handler 0000002E
+
+Symbol: AD16C4T0_BRK_UP_TRIG_COM_Handler
+   Definitions
+      At line 207 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 59 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 208 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+AD16C4T0_CC_Handler 00000030
+
+Symbol: AD16C4T0_CC_Handler
+   Definitions
+      At line 213 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 60 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 214 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+ADC_ACMP_Handler 0000002C
+
+Symbol: ADC_ACMP_Handler
+   Definitions
+      At line 201 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 58 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 202 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+BS16T0_Handler 00000032
+
+Symbol: BS16T0_Handler
+   Definitions
+      At line 219 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 61 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 220 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+BS16T1_UART2_Handler 00000038
+
+Symbol: BS16T1_UART2_Handler
+   Definitions
+      At line 235 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 65 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 236 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+
+
+ARM Macro Assembler    Page 2 Alphabetic symbol ordering
+Relocatable symbols
+
+
+BS16T2_UART3_Handler 0000003A
+
+Symbol: BS16T2_UART3_Handler
+   Definitions
+      At line 241 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 66 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 242 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+BS16T3_DAC0_Handler 0000003E
+
+Symbol: BS16T3_DAC0_Handler
+   Definitions
+      At line 253 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 68 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 254 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+CAN0_Handler 00000028
+
+Symbol: CAN0_Handler
+   Definitions
+      At line 189 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 56 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 190 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+CMU_Handler 0000001C
+
+Symbol: CMU_Handler
+   Definitions
+      At line 153 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 50 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 154 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+CRYPT_TRNG_Handler 0000001A
+
+Symbol: CRYPT_TRNG_Handler
+   Definitions
+      At line 147 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 49 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 148 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+
+
+
+ARM Macro Assembler    Page 3 Alphabetic symbol ordering
+Relocatable symbols
+
+tartup_es32f065x.s
+
+DMA_Handler 00000026
+
+Symbol: DMA_Handler
+   Definitions
+      At line 183 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 55 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 184 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+DebugMon_Handler 0000000E
+
+Symbol: DebugMon_Handler
+   Definitions
+      At line 111 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 42 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 112 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+EXTI0_3_Handler 0000001E
+
+Symbol: EXTI0_3_Handler
+   Definitions
+      At line 159 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 51 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 160 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+EXTI12_15_Handler 00000024
+
+Symbol: EXTI12_15_Handler
+   Definitions
+      At line 177 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 54 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 178 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+EXTI4_7_Handler 00000020
+
+Symbol: EXTI4_7_Handler
+   Definitions
+      At line 165 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 52 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+
+
+
+ARM Macro Assembler    Page 4 Alphabetic symbol ordering
+Relocatable symbols
+
+      At line 166 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+EXTI8_11_Handler 00000022
+
+Symbol: EXTI8_11_Handler
+   Definitions
+      At line 171 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 53 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 172 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+GP16C2T0_Handler 00000034
+
+Symbol: GP16C2T0_Handler
+   Definitions
+      At line 224 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 63 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 225 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+GP16C2T1_Handler 00000036
+
+Symbol: GP16C2T1_Handler
+   Definitions
+      At line 229 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 64 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 230 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+GP16C4T0_LCD_Handler 0000003C
+
+Symbol: GP16C4T0_LCD_Handler
+   Definitions
+      At line 247 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 67 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 248 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+HardFault_Handler 0000000A
+
+Symbol: HardFault_Handler
+   Definitions
+      At line 99 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+   Uses
+      At line 33 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+
+
+
+ARM Macro Assembler    Page 5 Alphabetic symbol ordering
+Relocatable symbols
+
+artup_es32f065x.s
+      At line 100 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+I2C0_Handler 00000040
+
+Symbol: I2C0_Handler
+   Definitions
+      At line 259 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 69 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 260 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+I2C1_Handler 00000042
+
+Symbol: I2C1_Handler
+   Definitions
+      At line 265 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 70 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 266 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+INT 00000000
+
+Symbol: INT
+   Definitions
+      At line 80 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+   Uses
+      None
+Comment: INT unused
+LPTIM0_SPI2_Handler 0000002A
+
+Symbol: LPTIM0_SPI2_Handler
+   Definitions
+      At line 195 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 57 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 196 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+LPUART0_Handler 00000050
+
+Symbol: LPUART0_Handler
+   Definitions
+      At line 307 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 77 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 308 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+
+
+
+ARM Macro Assembler    Page 6 Alphabetic symbol ordering
+Relocatable symbols
+
+tartup_es32f065x.s
+
+LVD_Handler 00000016
+
+Symbol: LVD_Handler
+   Definitions
+      At line 135 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 47 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 136 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+NMI_Handler 00000008
+
+Symbol: NMI_Handler
+   Definitions
+      At line 93 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+   Uses
+      At line 32 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 94 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+
+PendSV_Handler 00000010
+
+Symbol: PendSV_Handler
+   Definitions
+      At line 116 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 44 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 117 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+RTC_TSENSE_Handler 00000018
+
+Symbol: RTC_TSENSE_Handler
+   Definitions
+      At line 141 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 48 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 142 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 83 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+   Uses
+      At line 31 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+
+
+
+ARM Macro Assembler    Page 7 Alphabetic symbol ordering
+Relocatable symbols
+
+      At line 84 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+
+SPI0_Handler 00000044
+
+Symbol: SPI0_Handler
+   Definitions
+      At line 271 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 71 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 272 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+SPI1_Handler 00000046
+
+Symbol: SPI1_Handler
+   Definitions
+      At line 277 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 72 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 278 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+SVC_Handler 0000000C
+
+Symbol: SVC_Handler
+   Definitions
+      At line 105 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 41 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 106 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+SysTick_Handler 00000012
+
+Symbol: SysTick_Handler
+   Definitions
+      At line 122 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 45 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 123 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+UART0_Handler 00000048
+
+Symbol: UART0_Handler
+   Definitions
+      At line 283 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 73 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+
+
+
+ARM Macro Assembler    Page 8 Alphabetic symbol ordering
+Relocatable symbols
+
+artup_es32f065x.s
+      At line 284 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+UART1_Handler 0000004A
+
+Symbol: UART1_Handler
+   Definitions
+      At line 289 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 74 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 290 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+USART0_Handler 0000004C
+
+Symbol: USART0_Handler
+   Definitions
+      At line 295 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 75 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 296 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+USART1_Handler 0000004E
+
+Symbol: USART1_Handler
+   Definitions
+      At line 301 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 76 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 302 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+WWDG_IWDG_Handler 00000014
+
+Symbol: WWDG_IWDG_Handler
+   Definitions
+      At line 129 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      At line 46 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 130 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+__user_initial_stackheap 00000054
+
+Symbol: __user_initial_stackheap
+   Definitions
+      At line 324 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+
+
+
+ARM Macro Assembler    Page 9 Alphabetic symbol ordering
+Relocatable symbols
+
+      At line 323 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+Comment: __user_initial_stackheap used once
+40 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+Heap_Size 00000000
+
+Symbol: Heap_Size
+   Definitions
+      At line 17 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+   Uses
+      At line 20 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 327 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+Stack_Size 00000400
+
+Symbol: Stack_Size
+   Definitions
+      At line 10 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+   Uses
+      At line 12 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+      At line 326 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 85 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+   Uses
+      At line 86 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\st
+artup_es32f065x.s
+Comment: __main used once
+__use_two_region_memory 00000000
+
+Symbol: __use_two_region_memory
+   Definitions
+      At line 322 in file ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Startup\keil\s
+tartup_es32f065x.s
+   Uses
+      None
+Comment: __use_two_region_memory unused
+2 symbols
+388 symbols in table

@@ -1,0 +1,11 @@
+.\objects\system_es32f065x.o: ..\Lib\CMSIS\Device\EastSoft\ES32F065x\System\system_es32f065x.c
+.\objects\system_es32f065x.o: ..\Lib\ALD\ES32F065x\Include\utils.h
+.\objects\system_es32f065x.o: D:\MDK5.29\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\system_es32f065x.o: ..\APP\ald_conf.h
+.\objects\system_es32f065x.o: ..\Lib\ALD\ES32F065x\Include\type.h
+.\objects\system_es32f065x.o: D:\MDK5.29\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\system_es32f065x.o: ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Include\es32f065x.h
+.\objects\system_es32f065x.o: ..\Lib\CMSIS\Include\core_cm0.h
+.\objects\system_es32f065x.o: ..\Lib\CMSIS\Include\cmsis_version.h
+.\objects\system_es32f065x.o: ..\Lib\CMSIS\Include\cmsis_compiler.h
+.\objects\system_es32f065x.o: ..\Lib\CMSIS\Include\cmsis_armcc.h
