@@ -4,6 +4,9 @@
 
 #include "utils.h"
 
+#define xKEY_ANFULAI
+#define KEY_INTERUPT
+
 #ifdef ALD_CMU
 	#include "ald_cmu.h"
 #endif

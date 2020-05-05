@@ -1,6 +1,6 @@
 
 #include "bsp.h"
-#if 0
+#ifdef KEY_ANFULAI
 static key_t s_tbtn[KEY_COUNT];
 static key_fifo_t s_tkey; /* 按键 FIFO 变量,结构体 */
 /* GPIO和PIN定义 */
@@ -215,7 +215,7 @@ static uint8_t keypin_active(uint8_t _id)
 {
 	uint8_t level;
 	
-	if ((s_gpio_list[_id].gpio->DIN & s_gpio_list[_id].pin) == KEY_OFF)
+	if ((s_gpio_list[_id].gpio->DIN & s_gpio_list[_id].pin) == BIT_RESET)
 	{
 		level = 0;
 	}
@@ -479,6 +479,8 @@ void bsp_initkey(void)
 	/* Configure interrupt */
 	ald_gpio_exti_interrupt_config(GPIO_PIN_0, EXTI_TRIGGER_TRAILING_EDGE, ENABLE);	
 	ald_gpio_exti_interrupt_config(GPIO_PIN_1, EXTI_TRIGGER_TRAILING_EDGE, ENABLE);	
+	
+	ald_mcu_irq_config(EXTI0_3_IRQn, 3, ENABLE);
 }
 
 

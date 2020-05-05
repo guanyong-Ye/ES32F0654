@@ -57,7 +57,9 @@ void SystemClock_Config(void)
 */
 void bsp_RunPer10ms(void)
 {
-//	bsp_keyscan10ms();
+#ifdef KEY_ANFULAI
+	bsp_keyscan10ms();
+#endif
 }
 
 /*

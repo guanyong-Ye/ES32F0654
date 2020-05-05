@@ -112,6 +112,7 @@ void DMA_Handler(void)
   * @brief  External IRQ handler
   * @retval None
   */
+#ifdef KEY_INTERUPT
 void EXTI0_3_Handler(void)
 {	
 	/* Handle external interrupt */
@@ -129,7 +130,7 @@ void EXTI0_3_Handler(void)
 
 	return;
 }
-
+#endif
 /**
   * @}
   */

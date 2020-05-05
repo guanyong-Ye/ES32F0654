@@ -1,8 +1,8 @@
 Dependencies for Project 'ES320F654', Target 'Target 1': (DO NOT MODIFY !)
 CompilerVersion: 5060750::V5.06 update 6 (build 750)::ARMCC
-F (..\BSP\bsp.c)(0x5EB03F97)(--c99 --gnu -c --cpu Cortex-M0 -g -O0 --apcs=interwork --split_sections -I ..\Lib\ALD\ES32F065x\Include -I ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Include -I ..\Lib\CMSIS\Include -I ..\APP -I ..\BSP -I ..\BSP\GPIO -I ..\BSP\KEY -I ..\BSP\TIMER-I.\RTE\_Target_1-ID:\MDK5.29\Eastsoft\ES32_DFP\1.0.6\Device\Include-ID:\MDK5.29\ARM\CMSIS\Include-D__UVISION_VERSION="529" -DES32F065x-o .\objects\bsp.o --omf_browse .\objects\bsp.crf --depend .\objects\bsp.d)
+F (..\BSP\bsp.c)(0x5EB0B3B5)(--c99 --gnu -c --cpu Cortex-M0 -g -O0 --apcs=interwork --split_sections -I ..\Lib\ALD\ES32F065x\Include -I ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Include -I ..\Lib\CMSIS\Include -I ..\APP -I ..\BSP -I ..\BSP\GPIO -I ..\BSP\KEY -I ..\BSP\TIMER-I.\RTE\_Target_1-ID:\MDK5.29\Eastsoft\ES32_DFP\1.0.6\Device\Include-ID:\MDK5.29\ARM\CMSIS\Include-D__UVISION_VERSION="529" -DES32F065x-o .\objects\bsp.o --omf_browse .\objects\bsp.crf --depend .\objects\bsp.d)
 I (..\BSP\bsp.h)(0x5EB0397B)
-I (..\APP\es32f0654_conf.h)(0x5EB032F8)
+I (..\APP\es32f0654_conf.h)(0x5EB0B532)
 I (..\Lib\ALD\ES32F065x\Include\utils.h)(0x5E02076B)
 I (D:\MDK5.29\ARM\ARMCC\include\stdlib.h)(0x5D9AD21A)
 I (..\APP\ald_conf.h)(0x5EB032F8)
@@ -19,11 +19,11 @@ I (..\Lib\ALD\ES32F065x\Include\ald_gpio.h)(0x5E02076B)
 I (D:\MDK5.29\ARM\ARMCC\include\stdio.h)(0x5D9AD21A)
 I (D:\MDK5.29\ARM\ARMCC\include\string.h)(0x5D9AD218)
 I (..\BSP\GPIO\bsp_gpio.h)(0x5EB03CBF)
-I (..\BSP\KEY\bsp_key.h)(0x5EB03F53)
+I (..\BSP\KEY\bsp_key.h)(0x5EB0B4E8)
 I (..\BSP\TIMER\bsp_timer.h)(0x5EB037CE)
 F (..\BSP\GPIO\bsp_gpio.c)(0x5EB03CF4)(--c99 --gnu -c --cpu Cortex-M0 -g -O0 --apcs=interwork --split_sections -I ..\Lib\ALD\ES32F065x\Include -I ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Include -I ..\Lib\CMSIS\Include -I ..\APP -I ..\BSP -I ..\BSP\GPIO -I ..\BSP\KEY -I ..\BSP\TIMER-I.\RTE\_Target_1-ID:\MDK5.29\Eastsoft\ES32_DFP\1.0.6\Device\Include-ID:\MDK5.29\ARM\CMSIS\Include-D__UVISION_VERSION="529" -DES32F065x-o .\objects\bsp_gpio.o --omf_browse .\objects\bsp_gpio.crf --depend .\objects\bsp_gpio.d)
 I (..\BSP\bsp.h)(0x5EB0397B)
-I (..\APP\es32f0654_conf.h)(0x5EB032F8)
+I (..\APP\es32f0654_conf.h)(0x5EB0B532)
 I (..\Lib\ALD\ES32F065x\Include\utils.h)(0x5E02076B)
 I (D:\MDK5.29\ARM\ARMCC\include\stdlib.h)(0x5D9AD21A)
 I (..\APP\ald_conf.h)(0x5EB032F8)
@@ -40,11 +40,11 @@ I (..\Lib\ALD\ES32F065x\Include\ald_gpio.h)(0x5E02076B)
 I (D:\MDK5.29\ARM\ARMCC\include\stdio.h)(0x5D9AD21A)
 I (D:\MDK5.29\ARM\ARMCC\include\string.h)(0x5D9AD218)
 I (..\BSP\GPIO\bsp_gpio.h)(0x5EB03CBF)
-I (..\BSP\KEY\bsp_key.h)(0x5EB03F53)
+I (..\BSP\KEY\bsp_key.h)(0x5EB0B4E8)
 I (..\BSP\TIMER\bsp_timer.h)(0x5EB037CE)
-F (..\BSP\KEY\bsp_key.c)(0x5EB03F53)(--c99 --gnu -c --cpu Cortex-M0 -g -O0 --apcs=interwork --split_sections -I ..\Lib\ALD\ES32F065x\Include -I ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Include -I ..\Lib\CMSIS\Include -I ..\APP -I ..\BSP -I ..\BSP\GPIO -I ..\BSP\KEY -I ..\BSP\TIMER-I.\RTE\_Target_1-ID:\MDK5.29\Eastsoft\ES32_DFP\1.0.6\Device\Include-ID:\MDK5.29\ARM\CMSIS\Include-D__UVISION_VERSION="529" -DES32F065x-o .\objects\bsp_key.o --omf_browse .\objects\bsp_key.crf --depend .\objects\bsp_key.d)
+F (..\BSP\KEY\bsp_key.c)(0x5EB0B413)(--c99 --gnu -c --cpu Cortex-M0 -g -O0 --apcs=interwork --split_sections -I ..\Lib\ALD\ES32F065x\Include -I ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Include -I ..\Lib\CMSIS\Include -I ..\APP -I ..\BSP -I ..\BSP\GPIO -I ..\BSP\KEY -I ..\BSP\TIMER-I.\RTE\_Target_1-ID:\MDK5.29\Eastsoft\ES32_DFP\1.0.6\Device\Include-ID:\MDK5.29\ARM\CMSIS\Include-D__UVISION_VERSION="529" -DES32F065x-o .\objects\bsp_key.o --omf_browse .\objects\bsp_key.crf --depend .\objects\bsp_key.d)
 I (..\BSP\bsp.h)(0x5EB0397B)
-I (..\APP\es32f0654_conf.h)(0x5EB032F8)
+I (..\APP\es32f0654_conf.h)(0x5EB0B532)
 I (..\Lib\ALD\ES32F065x\Include\utils.h)(0x5E02076B)
 I (D:\MDK5.29\ARM\ARMCC\include\stdlib.h)(0x5D9AD21A)
 I (..\APP\ald_conf.h)(0x5EB032F8)
@@ -61,11 +61,11 @@ I (..\Lib\ALD\ES32F065x\Include\ald_gpio.h)(0x5E02076B)
 I (D:\MDK5.29\ARM\ARMCC\include\stdio.h)(0x5D9AD21A)
 I (D:\MDK5.29\ARM\ARMCC\include\string.h)(0x5D9AD218)
 I (..\BSP\GPIO\bsp_gpio.h)(0x5EB03CBF)
-I (..\BSP\KEY\bsp_key.h)(0x5EB03F53)
+I (..\BSP\KEY\bsp_key.h)(0x5EB0B4E8)
 I (..\BSP\TIMER\bsp_timer.h)(0x5EB037CE)
 F (..\BSP\TIMER\bsp_timer.c)(0x5EB0397B)(--c99 --gnu -c --cpu Cortex-M0 -g -O0 --apcs=interwork --split_sections -I ..\Lib\ALD\ES32F065x\Include -I ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Include -I ..\Lib\CMSIS\Include -I ..\APP -I ..\BSP -I ..\BSP\GPIO -I ..\BSP\KEY -I ..\BSP\TIMER-I.\RTE\_Target_1-ID:\MDK5.29\Eastsoft\ES32_DFP\1.0.6\Device\Include-ID:\MDK5.29\ARM\CMSIS\Include-D__UVISION_VERSION="529" -DES32F065x-o .\objects\bsp_timer.o --omf_browse .\objects\bsp_timer.crf --depend .\objects\bsp_timer.d)
 I (..\BSP\bsp.h)(0x5EB0397B)
-I (..\APP\es32f0654_conf.h)(0x5EB032F8)
+I (..\APP\es32f0654_conf.h)(0x5EB0B532)
 I (..\Lib\ALD\ES32F065x\Include\utils.h)(0x5E02076B)
 I (D:\MDK5.29\ARM\ARMCC\include\stdlib.h)(0x5D9AD21A)
 I (..\APP\ald_conf.h)(0x5EB032F8)
@@ -82,7 +82,7 @@ I (..\Lib\ALD\ES32F065x\Include\ald_gpio.h)(0x5E02076B)
 I (D:\MDK5.29\ARM\ARMCC\include\stdio.h)(0x5D9AD21A)
 I (D:\MDK5.29\ARM\ARMCC\include\string.h)(0x5D9AD218)
 I (..\BSP\GPIO\bsp_gpio.h)(0x5EB03CBF)
-I (..\BSP\KEY\bsp_key.h)(0x5EB03F53)
+I (..\BSP\KEY\bsp_key.h)(0x5EB0B4E8)
 I (..\BSP\TIMER\bsp_timer.h)(0x5EB037CE)
 F (..\Lib\ALD\ES32F065x\Source\ald_acmp.c)(0x5E02076B)(--c99 --gnu -c --cpu Cortex-M0 -g -O0 --apcs=interwork --split_sections -I ..\Lib\ALD\ES32F065x\Include -I ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Include -I ..\Lib\CMSIS\Include -I ..\APP -I ..\BSP -I ..\BSP\GPIO -I ..\BSP\KEY -I ..\BSP\TIMER-I.\RTE\_Target_1-ID:\MDK5.29\Eastsoft\ES32_DFP\1.0.6\Device\Include-ID:\MDK5.29\ARM\CMSIS\Include-D__UVISION_VERSION="529" -DES32F065x-o .\objects\ald_acmp.o --omf_browse .\objects\ald_acmp.crf --depend .\objects\ald_acmp.d)
 I (..\Lib\ALD\ES32F065x\Include\ald_acmp.h)(0x5E02076B)
@@ -445,9 +445,9 @@ I (..\Lib\CMSIS\Include\cmsis_armcc.h)(0x5E02076C)
 I (..\Lib\ALD\ES32F065x\Include\ald_dma.h)(0x5E02076B)
 I (..\Lib\ALD\ES32F065x\Include\ald_cmu.h)(0x5E02076B)
 I (..\Lib\ALD\ES32F065x\Include\ald_syscfg.h)(0x5E02076B)
-F (..\APP\main.c)(0x5EB04003)(--c99 --gnu -c --cpu Cortex-M0 -g -O0 --apcs=interwork --split_sections -I ..\Lib\ALD\ES32F065x\Include -I ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Include -I ..\Lib\CMSIS\Include -I ..\APP -I ..\BSP -I ..\BSP\GPIO -I ..\BSP\KEY -I ..\BSP\TIMER-I.\RTE\_Target_1-ID:\MDK5.29\Eastsoft\ES32_DFP\1.0.6\Device\Include-ID:\MDK5.29\ARM\CMSIS\Include-D__UVISION_VERSION="529" -DES32F065x-o .\objects\main_1.o --omf_browse .\objects\main_1.crf --depend .\objects\main_1.d)
+F (..\APP\main.c)(0x5EB0B51A)(--c99 --gnu -c --cpu Cortex-M0 -g -O0 --apcs=interwork --split_sections -I ..\Lib\ALD\ES32F065x\Include -I ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Include -I ..\Lib\CMSIS\Include -I ..\APP -I ..\BSP -I ..\BSP\GPIO -I ..\BSP\KEY -I ..\BSP\TIMER-I.\RTE\_Target_1-ID:\MDK5.29\Eastsoft\ES32_DFP\1.0.6\Device\Include-ID:\MDK5.29\ARM\CMSIS\Include-D__UVISION_VERSION="529" -DES32F065x-o .\objects\main_1.o --omf_browse .\objects\main_1.crf --depend .\objects\main_1.d)
 I (..\BSP\bsp.h)(0x5EB0397B)
-I (..\APP\es32f0654_conf.h)(0x5EB032F8)
+I (..\APP\es32f0654_conf.h)(0x5EB0B532)
 I (..\Lib\ALD\ES32F065x\Include\utils.h)(0x5E02076B)
 I (D:\MDK5.29\ARM\ARMCC\include\stdlib.h)(0x5D9AD21A)
 I (..\APP\ald_conf.h)(0x5EB032F8)
@@ -464,9 +464,9 @@ I (..\Lib\ALD\ES32F065x\Include\ald_gpio.h)(0x5E02076B)
 I (D:\MDK5.29\ARM\ARMCC\include\stdio.h)(0x5D9AD21A)
 I (D:\MDK5.29\ARM\ARMCC\include\string.h)(0x5D9AD218)
 I (..\BSP\GPIO\bsp_gpio.h)(0x5EB03CBF)
-I (..\BSP\KEY\bsp_key.h)(0x5EB03F53)
+I (..\BSP\KEY\bsp_key.h)(0x5EB0B4E8)
 I (..\BSP\TIMER\bsp_timer.h)(0x5EB037CE)
-F (..\APP\irq.c)(0x5EB03F86)(--c99 --gnu -c --cpu Cortex-M0 -g -O0 --apcs=interwork --split_sections -I ..\Lib\ALD\ES32F065x\Include -I ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Include -I ..\Lib\CMSIS\Include -I ..\APP -I ..\BSP -I ..\BSP\GPIO -I ..\BSP\KEY -I ..\BSP\TIMER-I.\RTE\_Target_1-ID:\MDK5.29\Eastsoft\ES32_DFP\1.0.6\Device\Include-ID:\MDK5.29\ARM\CMSIS\Include-D__UVISION_VERSION="529" -DES32F065x-o .\objects\irq.o --omf_browse .\objects\irq.crf --depend .\objects\irq.d)
+F (..\APP\irq.c)(0x5EB0B313)(--c99 --gnu -c --cpu Cortex-M0 -g -O0 --apcs=interwork --split_sections -I ..\Lib\ALD\ES32F065x\Include -I ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Include -I ..\Lib\CMSIS\Include -I ..\APP -I ..\BSP -I ..\BSP\GPIO -I ..\BSP\KEY -I ..\BSP\TIMER-I.\RTE\_Target_1-ID:\MDK5.29\Eastsoft\ES32_DFP\1.0.6\Device\Include-ID:\MDK5.29\ARM\CMSIS\Include-D__UVISION_VERSION="529" -DES32F065x-o .\objects\irq.o --omf_browse .\objects\irq.crf --depend .\objects\irq.d)
 I (..\APP\main.h)(0x5E02077E)
 I (..\Lib\ALD\ES32F065x\Include\utils.h)(0x5E02076B)
 I (D:\MDK5.29\ARM\ARMCC\include\stdlib.h)(0x5D9AD21A)
@@ -479,14 +479,14 @@ I (..\Lib\CMSIS\Include\cmsis_version.h)(0x5E02076C)
 I (..\Lib\CMSIS\Include\cmsis_compiler.h)(0x5E02076C)
 I (..\Lib\CMSIS\Include\cmsis_armcc.h)(0x5E02076C)
 I (..\BSP\bsp.h)(0x5EB0397B)
-I (..\APP\es32f0654_conf.h)(0x5EB032F8)
+I (..\APP\es32f0654_conf.h)(0x5EB0B532)
 I (..\Lib\ALD\ES32F065x\Include\ald_cmu.h)(0x5E02076B)
 I (..\Lib\ALD\ES32F065x\Include\ald_syscfg.h)(0x5E02076B)
 I (..\Lib\ALD\ES32F065x\Include\ald_gpio.h)(0x5E02076B)
 I (D:\MDK5.29\ARM\ARMCC\include\stdio.h)(0x5D9AD21A)
 I (D:\MDK5.29\ARM\ARMCC\include\string.h)(0x5D9AD218)
 I (..\BSP\GPIO\bsp_gpio.h)(0x5EB03CBF)
-I (..\BSP\KEY\bsp_key.h)(0x5EB03F53)
+I (..\BSP\KEY\bsp_key.h)(0x5EB0B4E8)
 I (..\BSP\TIMER\bsp_timer.h)(0x5EB037CE)
 F (..\Lib\CMSIS\Device\EastSoft\ES32F065x\System\system_es32f065x.c)(0x5EB0173B)(--c99 --gnu -c --cpu Cortex-M0 -g -O0 --apcs=interwork --split_sections -I ..\Lib\ALD\ES32F065x\Include -I ..\Lib\CMSIS\Device\EastSoft\ES32F065x\Include -I ..\Lib\CMSIS\Include -I ..\APP -I ..\BSP -I ..\BSP\GPIO -I ..\BSP\KEY -I ..\BSP\TIMER-I.\RTE\_Target_1-ID:\MDK5.29\Eastsoft\ES32_DFP\1.0.6\Device\Include-ID:\MDK5.29\ARM\CMSIS\Include-D__UVISION_VERSION="529" -DES32F065x-o .\objects\system_es32f065x.o --omf_browse .\objects\system_es32f065x.crf --depend .\objects\system_es32f065x.d)
 I (..\Lib\ALD\ES32F065x\Include\utils.h)(0x5E02076B)

@@ -4,7 +4,7 @@
 #define __BSP_KEY_H
 
 #include "es32f0654_conf.h"
-#if 0 
+#ifdef KEY_ANFULAI 
 #define KEY_ON 	0
 #define KEY_OFF	1
 
@@ -72,13 +72,13 @@ typedef enum
 //	KEY_8_LONG,				/* 8键长按 */
 
 //	/* 组合键 */
-//	KEY_9_DOWN,				/* 9键按下 */
-//	KEY_9_UP,				/* 9键弹起 */
-//	KEY_9_LONG,				/* 9键长按 */
+	KEY_9_DOWN,				/* 9键按下 */
+	KEY_9_UP,				/* 9键弹起 */
+	KEY_9_LONG,				/* 9键长按 */
 
-//	KEY_10_DOWN,			/* 10键按下 */
-//	KEY_10_UP,				/* 10键弹起 */
-//	KEY_10_LONG,			/* 10键长按 */
+	KEY_10_DOWN,			/* 10键按下 */
+	KEY_10_UP,				/* 10键弹起 */
+	KEY_10_LONG,			/* 10键长按 */
 }KEY_ENUM;
 
 /* 按键FIFO用到变量 */
