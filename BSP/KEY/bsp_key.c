@@ -5,8 +5,8 @@ static key_t s_tbtn[KEY_COUNT];
 static key_fifo_t s_tkey; /* 按键 FIFO 变量,结构体 */
 /* GPIO和PIN定义 */
 static const x_gpio_t s_gpio_list[HARD_KEY_NUM] = {
-	{GPIOF, GPIO_PIN_0, 0},		/* K1 */
-	{GPIOF, GPIO_PIN_1, 0},		/* K2 */
+	{KEY1_PORT, KEY1_PIN, 0},		/* K1 */
+	{KEY2_PORT, KEY2_PIN, 0},		/* K2 */
 };	
 /*
 *********************************************************************************************************
@@ -114,17 +114,17 @@ void bsp_clearkey(void)
 *********************************************************************************************************
 *	函 数 名: bsp_SetKeyParam
 *	功能说明: 设置按键参数
-*	形    参：_ucKeyID : 按键ID，从0开始
-*			_LongTime : 长按事件时间
-*			 _RepeatSpeed : 连发速度
+*	形    _uckeyid : 按键ID，从0开始
+*			_longtime : 长按事件时间
+*			 _repeatspeed : 连发速度
 *	返 回 值: 无
 *********************************************************************************************************
 */
-void bsp_setkeyparam(uint8_t _ucKeyID, uint16_t _LongTime, uint8_t  _RepeatSpeed)
+void bsp_setkeyparam(uint8_t _uckeyid, uint16_t _longtime, uint8_t  _repeatspeed)
 {
-	s_tbtn[_ucKeyID].longtime = _LongTime;			/* 长按时间 0 表示不检测长按键事件 */
-	s_tbtn[_ucKeyID].repeatspeed = _RepeatSpeed;			/* 按键连发的速度，0表示不支持连发 */
-	s_tbtn[_ucKeyID].repeatcount = 0;						/* 连发计数器 */
+	s_tbtn[_uckeyid].longtime = _longtime;			/* 长按时间 0 表示不检测长按键事件 */
+	s_tbtn[_uckeyid].repeatspeed = _repeatspeed;			/* 按键连发的速度，0表示不支持连发 */
+	s_tbtn[_uckeyid].repeatcount = 0;						/* 连发计数器 */
 }
 
 /*

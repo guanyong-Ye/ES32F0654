@@ -42,7 +42,7 @@
 /*#define ALD_TIMER*/    
 /*#define ALD_TRNG*/    
 /*#define ALD_TSENSE*/    
-/*#define ALD_UART*/     
+#define ALD_UART    
 /*#define ALD_USART*/    
 /*#define ALD_WDT*/    
 

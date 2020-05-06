@@ -116,15 +116,15 @@ void DMA_Handler(void)
 void EXTI0_3_Handler(void)
 {	
 	/* Handle external interrupt */
-	if (ald_gpio_exti_get_flag_status(GPIO_PIN_0)) 
+	if (ald_gpio_exti_get_flag_status(KEY1_PIN)) 
 	{
-		ald_gpio_exti_clear_flag_status(GPIO_PIN_0);
+		ald_gpio_exti_clear_flag_status(KEY1_PIN);
 		toggle_pin(RED_GPIO, RED_PIN);
 	}
 
-	if (ald_gpio_exti_get_flag_status(GPIO_PIN_1)) 
+	if (ald_gpio_exti_get_flag_status(KEY2_PIN)) 
 	{
-		ald_gpio_exti_clear_flag_status(GPIO_PIN_1);
+		ald_gpio_exti_clear_flag_status(KEY2_PIN);
 		toggle_pin(GREEN_GPIO, GREEN_PIN);
 	}
 

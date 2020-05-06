@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>ES32F065x</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Lib\ALD\ES32F065x\Include;..\Lib\CMSIS\Device\EastSoft\ES32F065x\Include;..\Lib\CMSIS\Include;..\APP;..\BSP;..\BSP\GPIO;..\BSP\KEY;..\BSP\TIMER</IncludePath>
+              <IncludePath>..\Lib\ALD\ES32F065x\Include;..\Lib\CMSIS\Device\EastSoft\ES32F065x\Include;..\Lib\CMSIS\Include;..\APP;..\BSP;..\BSP\GPIO;..\BSP\KEY;..\BSP\TIMER;..\BSP\UART</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -401,6 +401,11 @@
               <FileName>bsp_timer.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\BSP\TIMER\bsp_timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\BSP\UART\bsp_uart.c</FilePath>
             </File>
           </Files>
         </Group>

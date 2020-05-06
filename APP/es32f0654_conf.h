@@ -18,4 +18,8 @@
 	#include "ald_dma.h"
 #endif
 
+#ifdef ALD_UART
+	#include "ald_uart.h"
+#endif
+
 #endif

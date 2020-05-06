@@ -39,6 +39,7 @@
 #include "bsp_gpio.h"
 #include "bsp_key.h"
 #include "bsp_timer.h"
+#include "bsp_uart.h"
 /* 提供给其他C文件调用的函数 */
 void bsp_init(void);
 void bsp_idle(void);

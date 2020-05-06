@@ -4,6 +4,12 @@
 #define __BSP_KEY_H
 
 #include "es32f0654_conf.h"
+
+#define KEY1_PORT	GPIOF
+#define KEY1_PIN	GPIO_PIN_0
+#define KEY2_PORT	GPIOF
+#define KEY2_PIN	GPIO_PIN_1
+
 #ifdef KEY_ANFULAI 
 #define KEY_ON 	0
 #define KEY_OFF	1
@@ -116,7 +122,7 @@ void bsp_putkey_fifo(uint8_t keycode);
 uint8_t bsp_getkey_state(KEY_ID_E _ucKeyID);
 uint8_t bsp_getkey(void);
 uint8_t bsp_getkey2(void);
-void bsp_setkeyparam(uint8_t _ucKeyID, uint16_t _LongTime, uint8_t  _RepeatSpeed);
+void bsp_setkeyparam(uint8_t _uckeyid, uint16_t _longtime, uint8_t  _repeatspeed);
 void bsp_clearkey(void);
 #else
 void bsp_initkey(void);

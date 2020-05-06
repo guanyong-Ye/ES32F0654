@@ -16,10 +16,6 @@ int main(void)
 		case KEY_2_DOWN:
 			toggle_pin(GREEN_GPIO,GREEN_PIN);
 		break;
-//		case KEY_9_DOWN:
-//			toggle_pin(RED_GPIO,RED_PIN);
-//			toggle_pin(GREEN_GPIO,GREEN_PIN);
-//		break;
 	}
 #endif
 	}

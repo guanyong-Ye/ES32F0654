@@ -14,8 +14,11 @@
 .\objects\main_1.o: ..\Lib\ALD\ES32F065x\Include\ald_cmu.h
 .\objects\main_1.o: ..\Lib\ALD\ES32F065x\Include\ald_syscfg.h
 .\objects\main_1.o: ..\Lib\ALD\ES32F065x\Include\ald_gpio.h
+.\objects\main_1.o: ..\Lib\ALD\ES32F065x\Include\ald_uart.h
+.\objects\main_1.o: ..\Lib\ALD\ES32F065x\Include\ald_dma.h
 .\objects\main_1.o: D:\MDK5.29\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\main_1.o: D:\MDK5.29\ARM\ARMCC\Bin\..\include\string.h
 .\objects\main_1.o: ..\BSP\GPIO\bsp_gpio.h
 .\objects\main_1.o: ..\BSP\KEY\bsp_key.h
 .\objects\main_1.o: ..\BSP\TIMER\bsp_timer.h
+.\objects\main_1.o: ..\BSP\UART\bsp_uart.h
